@@ -20,6 +20,37 @@
                 },
                 "rules": [
                     {
+                        "description": "Option + Tab = Cmd + Shift + ], Option + Shift + Tab = Cmd + Shift + [ (next/prev tab)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Trackpad finger layer: f (colemak t) = left click, s (colemak r) = right click",
                         "manipulators": [
                             {
