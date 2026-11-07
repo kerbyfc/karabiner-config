@@ -1,0 +1,79 @@
+{
+  "title": "Mouse motion to scroll (hold key)",
+  "rules": [
+    {
+      "description": "Left Option + mouse movement = scroll",
+      "manipulators": [
+        {
+          "type": "mouse_motion_to_scroll",
+          "from": {
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "options": {
+            "momentum_scroll_enabled": true,
+            "speed_multiplier": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "description": "Right Command + mouse movement = scroll",
+      "manipulators": [
+        {
+          "type": "mouse_motion_to_scroll",
+          "from": {
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "options": {
+            "momentum_scroll_enabled": true,
+            "speed_multiplier": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "description": "Hold F13 + mouse movement = scroll (variable-based, for non-modifier keys)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f13",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "enable_mouse_motion_to_scroll",
+                "value": true,
+                "key_up_value": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "mouse_motion_to_scroll",
+          "from": {
+            "modifiers": { "optional": ["any"] }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "enable_mouse_motion_to_scroll",
+              "value": true
+            }
+          ],
+          "options": {
+            "momentum_scroll_enabled": true,
+            "speed_multiplier": 1.0
+          }
+        }
+      ]
+    }
+  ]
+}

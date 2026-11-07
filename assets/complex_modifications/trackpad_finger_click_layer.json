@@ -1,0 +1,40 @@
+{
+  "title": "Trackpad finger click layer",
+  "rules": [
+    {
+      "description": "Trackpad finger layer: f (colemak t) = left click, s (colemak r) = right click",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "pointing_button": "button1" }],
+          "conditions": [
+            {
+              "type": "variable_unless",
+              "name": "multitouch_extension_finger_count_total",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "pointing_button": "button2" }],
+          "conditions": [
+            {
+              "type": "variable_unless",
+              "name": "multitouch_extension_finger_count_total",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
